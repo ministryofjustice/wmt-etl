@@ -4,6 +4,7 @@ Application configuration settings
 import os
 
 # WMT Database - target staging schema
+DB_ENGINE = os.getenv('WMT_DB_ENGINE', 'postgresql')
 DB_SERVER = os.getenv('WMT_DB_SERVER', 'localhost')
 DB_NAME = os.getenv('WMT_DB_NAME', 'wmt_db')
 DB_SCHEMA = os.getenv('WMT_DB_SCHEMA', 'staging')
