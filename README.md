@@ -36,9 +36,13 @@ In the base directory run the following command to execute pylint:
 
 `pylint wmt_etl/`
 
-In the base directory run the following command to execute unit tests:
+In the base directory run the following command to execute unit tests (ignoring those marked integration):
 
 `python -m pytest wmt_etl/`
+
+To run integration tests only, specify the following addtional command line arg:
+
+`python -m pytest --integration wmt_etl/`
 
 ### Running the ETL Job
 
