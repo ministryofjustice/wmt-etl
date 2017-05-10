@@ -1,5 +1,18 @@
 # Exclude all VSCode configuration files.
 **.vscode/
 
+# OSX
+.DS_Store
+
 # Ignore all log files.
 **.log*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+.cache
