@@ -40,7 +40,7 @@ In the base directory run the following command to execute unit tests (ignoring 
 
 `python -m pytest wmt_etl/`
 
-To run integration tests only, specify the following addtional command line arg:
+To include integration tests in the run, specify the following addtional command line arg:
 
 `python -m pytest --integration wmt_etl/`
 
