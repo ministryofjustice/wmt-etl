@@ -32,10 +32,19 @@ And it will switch to this virtualenv and take you to the ./wmt-etl directory.
 
 ### Linting & Testing
 
+In the base directory run the following command to execute pylint:
+
+`pylint wmt_etl/`
+
 In the base directory run the following command to execute unit tests:
 
+`python -m pytest wmt_etl/`
 
 ### Running the ETL Job
+
+This job is dependant on the creation of the application database with staging schema.
+
+This is defined in the [WMT Worker](https://github.com/ministryofjustice/wmt-worker) repository which includes information on running the required migration scripts.
 
 To run the example ETL file, first ensure that the local development DB is running and execute the following script to submit it for execution:
 
