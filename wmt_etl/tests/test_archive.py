@@ -1,3 +1,4 @@
+#pylint: disable=W0613,W0621
 '''Tests for extract file archival'''
 import os
 import pytest
