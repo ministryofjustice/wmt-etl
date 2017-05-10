@@ -30,8 +30,13 @@ All subsequent times you want to work on this project you should just need to ty
 
 And it will switch to this virtualenv and take you to the ./wmt-etl directory.
 
+### Linting & Testing
+
+In the base directory run the following command to execute unit tests:
+
+
 ### Running the ETL Job
 
 To run the example ETL file, first ensure that the local development DB is running and execute the following script to submit it for execution:
 
-`python etl.py`
+`python run.py`
