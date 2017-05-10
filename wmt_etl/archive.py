@@ -13,6 +13,7 @@ def archive_files(file_paths):
     for file_name in file_paths:
         with open(file_name, 'rb') as file_in, gzip.open(archive_name, 'wb') as file_out:
             shutil.copyfileobj(file_in, file_out)
+    return archive_name
 
 def create_data_directories():
     '''Create the data and archive directories if they do not already exist'''

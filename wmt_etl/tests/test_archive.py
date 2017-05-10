@@ -46,4 +46,5 @@ def test_get_archive_file_path():
 @pytest.mark.integration
 def test_file_archived(file_setup_teardown):
     '''Tests archival of files'''
-    archive.archive_files(DUMMY_FILE_PATHS)
+    archive_name = archive.archive_files(DUMMY_FILE_PATHS)
+    assert os.path.isfile(archive_name)
