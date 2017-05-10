@@ -1,6 +1,6 @@
 # Workload Management Tool - Data Import application
 
-[![Build Status](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)][https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)
+![Build Status](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)
 
 ### Set-up Python Dev environment
 Python development uses [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/index.html) to provide dependency isolation.
