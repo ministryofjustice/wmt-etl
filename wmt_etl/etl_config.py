@@ -12,8 +12,8 @@ DB_USERNAME = os.getenv('WMT_DB_USERNAME', 'wmt')
 DB_PASSWORD = os.getenv('WMT_DB_PASSWORD', 'wmt')
 
 # Extract file settings
-IMPORT_FILE_PATH = os.getenv('WMT_IMPORT_FILE_PATH', './data/')
-ARCHIVE_FILE_PATH = os.getenv('WMT_ARCHIVE_FILE_PATH', './data/archive/')
+IMPORT_FILE_DIR = os.getenv('WMT_IMPORT_FILE_PATH', './data/')
+ARCHIVE_FILE_DIR = os.getenv('WMT_ARCHIVE_FILE_PATH', './data/archive/')
 ARCHIVE_FILE_NAME = os.getenv('WMT_ARCHIVE_FILE_NAME', 'delius-extract')
 
 # Extract valid source worksheet tabs
