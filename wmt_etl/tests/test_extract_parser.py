@@ -39,7 +39,8 @@ def test_validate_sheet_names():
         'Flag_Warr_4_n',
         'Flag_Upw',
         'Flag_O_Due',
-        'Flag_Priority']
+        'Flag_Priority',
+        'Requirements']
     assert parser.validate_workbook_format(sheet_names)
 
 def test_invalid_sheet_names():

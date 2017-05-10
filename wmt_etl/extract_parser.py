@@ -13,9 +13,10 @@ def parse_workbook(workbook):
     ''' Parse an individual workbook'''
     dataframes = {}
     for sheet in workbook.sheet_names:
-        worksheet = workbook.parse(sheet)
-        worksheet.columns = transform_names(worksheet.columns)
-        dataframes[clean_name(sheet)] = worksheet
+        if clean_name(sheet) in config.VALID_SHEET_NAMES:
+            worksheet = workbook.parse(sheet)
+            worksheet.columns = transform_names(worksheet.columns)
+            dataframes[clean_name(sheet)] = worksheet
 
     return dataframes
 
@@ -29,5 +30,5 @@ def clean_name(name):
     return name.strip().replace(illegal_chars, '').lower()
 
 def validate_workbook_format(sheet_names):
-    '''XLSX file should be in the expected format'''
-    return set(transform_names(sheet_names)) == set(config.VALID_SHEET_NAMES)
+    '''XLSX file should be in the expected format - i.e. at min contains all valid sheet names'''
+    return set(config.VALID_SHEET_NAMES).issubset(set(transform_names(sheet_names)))
