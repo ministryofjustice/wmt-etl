@@ -1,6 +1,6 @@
 # Workload Management Tool - Data Import application
 
-[![Build Status](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)][https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)
+![Build Status](https://travis-ci.org/ministryofjustice/wmt-etl.svg?branch=master)
 
 ### Set-up Python Dev environment
 Python development uses [virtualenvwrapper](http://virtualenvwrapper.readthedocs.io/en/latest/index.html) to provide dependency isolation.
@@ -36,9 +36,13 @@ In the base directory run the following command to execute pylint:
 
 `pylint wmt_etl/`
 
-In the base directory run the following command to execute unit tests:
+In the base directory run the following command to execute unit tests (ignoring those marked integration):
 
 `python -m pytest wmt_etl/`
+
+To include integration tests in the run, specify the following addtional command line arg:
+
+`python -m pytest --integration wmt_etl/`
 
 ### Running the ETL Job
 
