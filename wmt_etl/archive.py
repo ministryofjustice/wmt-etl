@@ -10,9 +10,10 @@ def archive_files(file_paths):
     '''Add all region files to a single compressed archive'''
     archive_name = get_archive_file_path()
     create_data_directories()
-    for file_name in file_paths:
-        with open(file_name, 'rb') as file_in, gzip.open(archive_name, 'wb') as file_out:
+    for path in file_paths:
+        with open(path, 'rb') as file_in, gzip.open(archive_name, 'wb') as file_out:
             shutil.copyfileobj(file_in, file_out)
+            os.unlink(path)
     return archive_name
 
 def create_data_directories():
