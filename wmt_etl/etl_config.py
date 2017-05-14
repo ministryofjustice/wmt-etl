@@ -3,6 +3,9 @@ Application configuration settings
 '''
 import os
 
+# Logging
+LOGGING_DIR = os.getenv('WMT_LOGGING_DIR', './logs')
+
 # WMT Database - target staging schema
 DB_ENGINE = os.getenv('WMT_DB_ENGINE', 'postgresql')
 DB_SERVER = os.getenv('WMT_DB_SERVER', 'localhost')
