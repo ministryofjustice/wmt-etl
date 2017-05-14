@@ -55,4 +55,4 @@ def test_file_archived(file_setup_teardown):
     archive_name = archive.archive_files(DUMMY_FILE_PATHS)
     assert os.path.isfile(archive_name)
     for path in DUMMY_FILE_NAMES:
-        assert os.path.isfile
+        assert not os.path.isfile(path)
