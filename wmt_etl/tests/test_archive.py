@@ -3,7 +3,6 @@
 import os
 from shutil import copyfile
 import pytest
-from openpyxl import Workbook
 import wmt_etl.etl_config as config
 import wmt_etl.archive as archive
 
