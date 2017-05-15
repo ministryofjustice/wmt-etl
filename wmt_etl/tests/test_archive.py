@@ -1,9 +1,9 @@
 #pylint: disable=W0613,W0621
 '''Tests for extract file archival'''
 import os
+from shutil import copyfile
 import pytest
 from openpyxl import Workbook
-from shutil import copyfile
 import wmt_etl.etl_config as config
 import wmt_etl.archive as archive
 

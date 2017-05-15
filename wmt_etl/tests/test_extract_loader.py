@@ -52,8 +52,6 @@ def test_import_extract_rollback():
         cleanup_staging(connection)
         connection.close()
 
-
-
 @pytest.mark.integration
 def test_get_db_engine():
     '''Should create a new database engine instance for connection'''
@@ -68,11 +66,6 @@ def test_get_db_engine():
 
 def test_get_connection_string():
     '''Test connection strings are correctly constructed'''
-    expected_conn_string = '{0}://{1}:{2}@{3}/{4}'.format(
-        config.DB_ENGINE,
-        config.DB_USERNAME,
-        config.DB_PASSWORD,
-        config.DB_SERVER,
-        config.DB_NAME)
+    expected_conn_string = 'postgresql://wmt_etl:wmt_etl@localhost/wmt_db'
     actual_conn_string = loader.get_connection_string()
     assert expected_conn_string == actual_conn_string

@@ -1,3 +1,4 @@
+# pylint: disable=W0703
 '''
 Run main ETL application process
 '''
@@ -12,6 +13,7 @@ import wmt_etl.extract_loader as loader
 
 def main():
     '''Main application entry point'''
+    files_processed = False
     setup_log_dir()
     log.setup_logging()
     logging.info("Running load to schema %s", config.DB_SCHEMA)
@@ -23,14 +25,12 @@ def main():
         process_file(input_files[0], clean_tables=True)
         for workbook_file_name in input_files[1:]:
             process_file(workbook_file_name, clean_tables=False)
+        files_processed = True
     except Exception, ex:
         logging.error(ex.message, exc_info=True)
     finally:
-        try:
-            archive_name = archive.archive_files(input_files)
-            logging.info('Archived input files to %s', archive_name)
-        except Exception:
-            logging.error('Error archiving extract files', exc_info=True)
+        if files_processed:
+            archive_input_files(input_files)
         logging.info('Extract process completed')
 
 def process_file(input_file, clean_tables):
@@ -38,6 +38,14 @@ def process_file(input_file, clean_tables):
     workbook = parser.load_workbook(input_file)
     dataframes = parser.parse_workbook(workbook)
     loader.import_extract(dataframes, clean_tables)
+
+def archive_input_files(input_files):
+    ''' Archive processed input files'''
+    try:
+        archive_name = archive.archive_files(input_files)
+        logging.info('Archived input files to %s', archive_name)
+    except Exception:
+        logging.error('Error archiving extract files', exc_info=True)
 
 def get_input_files():
     '''Return list of files to process'''
