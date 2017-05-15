@@ -1,22 +1,21 @@
 '''Functionality to populate staging schema with WMT extracts'''
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
 import wmt_etl.etl_config as config
 
 def import_extract(dataframes, clean=False):
     '''Process all dataframes representing total contents of an extract workbook'''
     db_engine = get_db_engine()
-    Session = scoped_session(sessionmaker(bind=db_engine))
-    session = Session()
+    connection = db_engine.connect()
+    transaction = connection.begin()
     try:
         for table_name, data in dataframes.iteritems():
             if clean:
                 delete = 'DELETE FROM {0}.{1}'.format(config.DB_SCHEMA, table_name)
-                session.execute(delete)
-            process_dataframe(db_engine, table_name, data)
-        session.commit()
+                connection.execute(delete)
+            process_dataframe(connection.engine, table_name, data)
+        transaction.commit()
     except:
-        session.rollback()
+        transaction.rollback()
         raise
 
 def process_dataframe(db_engine, table_name, data):
