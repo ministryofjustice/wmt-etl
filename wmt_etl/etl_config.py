@@ -16,7 +16,7 @@ DB_PASSWORD = os.getenv('WMT_DB_PASSWORD', 'wmt_etl')
 
 # Extract file settings
 IMPORT_FILE_DIR = os.getenv('WMT_IMPORT_FILE_PATH', './data/')
-ARCHIVE_FILE_DIR = os.getenv('WMT_ARCHIVE_FILE_PATH', './data/archive/')
+ARCHIVE_FILE_DIR = os.getenv('WMT_ARCHIVE_FILE_PATH', './archive/')
 ARCHIVE_FILE_NAME = os.getenv('WMT_ARCHIVE_FILE_NAME', 'delius-extract')
 EXPECTED_FILE_COUNT = 7
 EXPECTED_FILE_EXTENSIONS = ('.xlsx', '.xls')

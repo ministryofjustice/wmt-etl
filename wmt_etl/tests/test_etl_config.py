@@ -6,7 +6,7 @@ def test_default_configuration():
     ''' Test default config values are as expected '''
     assert config.DB_NAME == "wmt_db"
     assert config.IMPORT_FILE_DIR == "./data/"
-    assert config.ARCHIVE_FILE_DIR == "./data/archive/"
+    assert config.ARCHIVE_FILE_DIR == "./archive/"
     assert config.DB_USERNAME == "wmt_etl"
     assert config.DB_PASSWORD == "wmt_etl"
     assert config.DB_SCHEMA == "staging"
