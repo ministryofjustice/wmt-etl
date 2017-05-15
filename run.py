@@ -38,6 +38,7 @@ def process_file(input_file, clean_tables):
     workbook = parser.load_workbook(input_file)
     dataframes = parser.parse_workbook(workbook)
     loader.import_extract(dataframes, clean_tables)
+    logging.info('Successfully processed file %s', input_file)
 
 def archive_input_files(input_files):
     ''' Archive processed input files'''
