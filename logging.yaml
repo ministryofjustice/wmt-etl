@@ -11,20 +11,11 @@ handlers:
         formatter: simple
         stream: ext://sys.stdout
  
-    info_file_handler:
+    log_file_handler:
         class: logging.handlers.RotatingFileHandler
         level: INFO 
         formatter: simple
-        filename: logs/info.log
-        maxBytes: 10485760 # 10MB
-        backupCount: 20
-        encoding: utf8
- 
-    error_file_handler:
-        class: logging.handlers.RotatingFileHandler
-        level: ERROR 
-        formatter: simple
-        filename: logs/errors.log
+        filename: logs/wmt-etl.log
         maxBytes: 10485760 # 10MB
         backupCount: 20
         encoding: utf8
@@ -37,4 +28,4 @@ loggers:
  
 root:
     level: INFO
-    handlers: [console, info_file_handler, error_file_handler]
+    handlers: [console, log_file_handler]
