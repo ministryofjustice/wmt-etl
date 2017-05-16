@@ -16,15 +16,17 @@ def main():
     files_processed = False
     setup_log_dir()
     log.setup_logging()
-    logging.info("Running load to schema %s", config.DB_SCHEMA)
+    logging.info("Running load to schema %s", config.DB_STG_SCHEMA)
     input_files = get_input_files()
     try:
         if len(input_files) < config.EXPECTED_FILE_COUNT:
             raise ValueError('Not all expected extract files are present')
 
         process_file(input_files[0], clean_tables=True)
-        for workbook_file_name in input_files[1:]:
-            process_file(workbook_file_name, clean_tables=False)
+        for workbook_file_name in input_files[1:-1]:
+            process_file(workbook_file_name)
+        process_file(input_files[-1], complete=True)
+
         files_processed = True
     except Exception, ex:
         logging.error(ex.message, exc_info=True)
@@ -33,11 +35,12 @@ def main():
             archive_input_files(input_files)
         logging.info('Extract process completed')
 
-def process_file(input_file, clean_tables):
+def process_file(input_file, clean_tables=False, complete=False):
     ''' Process a single extract workbook file'''
     workbook = parser.load_workbook(input_file)
     dataframes = parser.parse_workbook(workbook)
-    loader.import_extract(dataframes, clean_tables)
+    loader.import_extract(dataframes, clean_tables, complete)
+
     logging.info('Successfully processed file %s', input_file)
 
 def archive_input_files(input_files):
