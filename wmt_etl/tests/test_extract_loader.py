@@ -27,6 +27,7 @@ def test_should_import_extract():
     try:
         for name in config.VALID_SHEET_NAMES:
             select = 'SELECT COUNT(*) FROM {0}.{1}'.format(config.DB_STG_SCHEMA, name)
+
             results = connection.execute(select)
             for row in results:
                 assert row[0] == 2
