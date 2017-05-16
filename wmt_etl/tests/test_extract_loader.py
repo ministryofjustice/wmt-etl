@@ -12,7 +12,7 @@ TEST_DATA_FILE_PATH = join(THIS_DIR, 'data/full_inputs/ND01.xlsx')
 def cleanup_staging(connection):
     ''' Clean up staging records created for testing'''
     for name in config.VALID_SHEET_NAMES:
-        delete = 'DELETE FROM {0}.{1}'.format(config.DB_SCHEMA, name)
+        delete = 'DELETE FROM {0}.{1}'.format(config.DB_STG_SCHEMA, name)
         connection.execute(delete)
 
 @pytest.mark.integration
@@ -26,7 +26,7 @@ def test_should_import_extract():
 
     try:
         for name in config.VALID_SHEET_NAMES:
-            select = 'SELECT COUNT(*) FROM {0}.{1}'.format(config.DB_SCHEMA, name)
+            select = 'SELECT COUNT(*) FROM {0}.{1}'.format(config.DB_STG_SCHEMA, name)
             results = connection.execute(select)
             for row in results:
                 assert row[0] == 2
@@ -44,11 +44,11 @@ def test_import_extract_rollback():
 
     try:
         with pytest.raises(ProgrammingError, message='Expecting ProgrammingError') as error:
-            config.DB_SCHEMA = 'invalid'
+            config.DB_STG_SCHEMA = 'invalid'
             loader.import_extract(dataframes)
         assert '''schema "invalid" does not exist''' in str(error.value)
     finally:
-        config.DB_SCHEMA = 'staging'
+        config.DB_STG_SCHEMA = 'staging'
         cleanup_staging(connection)
         connection.close()
 
