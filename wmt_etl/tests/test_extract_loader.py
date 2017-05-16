@@ -14,6 +14,8 @@ def cleanup_staging(connection):
     for name in config.VALID_SHEET_NAMES:
         delete = 'DELETE FROM {0}.{1}'.format(config.DB_STG_SCHEMA, name)
         connection.execute(delete)
+    delete_tasks = 'DELETE FROM app.tasks'
+    connection.execute(delete_tasks)
 
 @pytest.mark.integration
 def test_should_import_extract():

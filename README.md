@@ -52,4 +52,4 @@ This is defined in the [WMT Worker](https://github.com/ministryofjustice/wmt-wor
 
 To run the example ETL file, first ensure that the local development DB is running and execute the following script to submit it for execution:
 
-`python run.py`
+`python start.py`
