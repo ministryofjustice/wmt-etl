@@ -11,7 +11,7 @@ import wmt_etl.archive as archive
 import wmt_etl.extract_parser as parser
 import wmt_etl.extract_loader as loader
 
-def main():
+def run():
     '''Main application entry point'''
     files_processed = False
     setup_log_dir()
@@ -66,6 +66,3 @@ def setup_log_dir():
         except:
             logging.error('Could not create logging directory', exc_info=True)
             raise
-
-if __name__ == '__main__':
-    main()
