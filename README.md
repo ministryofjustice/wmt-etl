@@ -7,8 +7,11 @@ Python development uses [virtualenvwrapper](http://virtualenvwrapper.readthedocs
 
 To set up Python and VirtualEnv install as follows:
 
-`brew install python`
-`pip install virtualenvwrapper`
+```
+brew install python
+pip install virtualenvwrapper
+brew install freetds@0.91
+```
 
 Add the following lines to your `~/.bash_profile`:
 

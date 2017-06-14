@@ -47,7 +47,7 @@ def get_db_engine():
 
 def get_connection_string():
     ''' Get formatted db connection string'''
-    return '{0}://{1}:{2}@{3}/{4}'.format(
+    return '{0}://{1}@{3}:{2}@{3}/{4}'.format(
         config.DB_ENGINE,
         config.DB_USERNAME,
         config.DB_PASSWORD,
