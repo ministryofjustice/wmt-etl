@@ -12,6 +12,7 @@ brew install python
 pip install virtualenvwrapper
 brew install freetds@0.91
 brew link --force freetds@0.91
+brew install unixodbc
 ```
 
 Add the following lines to your `~/.bash_profile`:

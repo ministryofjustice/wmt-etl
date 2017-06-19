@@ -66,9 +66,3 @@ def test_get_db_engine():
         assert connection.engine == engine
     finally:
         connection.close()
-
-def test_get_connection_string():
-    '''Test connection strings are correctly constructed'''
-    expected_conn_string = 'postgresql://wmt_etl:wmt_etl@localhost/wmt_db'
-    actual_conn_string = loader.get_connection_string()
-    assert expected_conn_string == actual_conn_string
