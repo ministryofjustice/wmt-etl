@@ -58,3 +58,17 @@ This is defined in the [WMT Worker](https://github.com/ministryofjustice/wmt-wor
 To run the example ETL file, first ensure that the local development DB is running and execute the following script to submit it for execution:
 
 `python start.py`
+
+### Troubleshooting
+
+Ensure that your python directory points to `/usr/local/bin`. To disocver this, run `which python`.
+
+If you get the following error message when running the virtualenvwrapper:
+
+`/usr/local/bin : permission denied`
+
+Run the following command and that should resolve it:
+
+`sudo chown -R $(whoami) /usr/local/bin`
+
+If you make a change to the path variable in your relative .rc file, then open a new terminal tab as these tend to be cached.
