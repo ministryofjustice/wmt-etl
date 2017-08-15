@@ -1,12 +1,13 @@
 #pylint: disable=W0613,W0621,W0611
 '''Tests for import top level run module'''
 from os.path import join, dirname, abspath
+import os
+from shutil import copyfile
 import pytest
 import wmt_etl.run as job
 import wmt_etl.etl_config as config
 import wmt_etl.extract_loader as loader
 from wmt_etl.tests.test_extract_loader import cleanup_staging
-from wmt_etl.tests.test_archive import file_setup_teardown
 
 THIS_DIR = dirname(abspath(__file__))
 DUMMY_FILE_SOURCE_PATH = join(THIS_DIR, 'data/full_inputs')
@@ -23,6 +24,8 @@ def test_run_import(file_setup_teardown):
     connection = engine.connect()
 
     try:
+        EXPECTED_TASK_ROW_COUNT = 1
+        EXPECTED_ROW_COUNT = 5
         job.run()
 
         for name in config.VALID_SHEET_NAMES:
@@ -30,13 +33,26 @@ def test_run_import(file_setup_teardown):
 
             results = connection.execute(select)
             for row in results:
-                assert row[0] == 14
+                assert row[0] == EXPECTED_ROW_COUNT, "Expected %r extract row count" % EXPECTED_ROW_COUNT
 
         task_select = 'SELECT COUNT(*) FROM {0}.tasks'.format(config.DB_APP_SCHEMA)
         results = connection.execute(task_select)
         for row in results:
-            assert row[0] == 1
+            assert row[0] == 1, "Expected %r task count" % EXPECTED_TASK_ROW_COUNT
 
     finally:
         cleanup_staging(connection)
         connection.close()
+
+@pytest.fixture()
+def file_setup_teardown():
+    ''' Generates and tears down dummy files to test archival'''
+    for src, dest in zip(SOURCE_FILE_PATHS, DUMMY_FILE_PATHS):
+        copyfile(src, dest)
+
+    try:
+        yield
+    finally:
+        for archive_path in [f for f in os.listdir(config.ARCHIVE_FILE_DIR)
+                             if f.endswith('.tar.gz')]:
+            os.remove(os.path.join(config.ARCHIVE_FILE_DIR, archive_path))
