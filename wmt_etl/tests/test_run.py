@@ -2,12 +2,12 @@
 '''Tests for import top level run module'''
 from os.path import join, dirname, abspath
 import os
-from shutil import copyfile
 import pytest
 import wmt_etl.run as job
 import wmt_etl.etl_config as config
 import wmt_etl.extract_loader as loader
 from wmt_etl.tests.test_extract_loader import cleanup_staging
+from wmt_etl.tests.fixtures import clear_archive, copy_source_files
 
 THIS_DIR = dirname(abspath(__file__))
 DUMMY_FILE_SOURCE_PATH = join(THIS_DIR, 'data/full_inputs')
@@ -24,8 +24,8 @@ def test_run_import(file_setup_teardown):
     connection = engine.connect()
 
     try:
-        EXPECTED_TASK_ROW_COUNT = 1
-        EXPECTED_ROW_COUNT = 5
+        expected_task_count = 1
+        expected_ext_count = 5
         job.run()
 
         for name in config.VALID_SHEET_NAMES:
@@ -33,26 +33,23 @@ def test_run_import(file_setup_teardown):
 
             results = connection.execute(select)
             for row in results:
-                assert row[0] == EXPECTED_ROW_COUNT, "Expected %r extract row count" % EXPECTED_ROW_COUNT
+                assert row[0] == expected_ext_count, "Expected %r row count" % expected_ext_count
 
         task_select = 'SELECT COUNT(*) FROM {0}.tasks'.format(config.DB_APP_SCHEMA)
         results = connection.execute(task_select)
         for row in results:
-            assert row[0] == 1, "Expected %r task count" % EXPECTED_TASK_ROW_COUNT
+            assert row[0] == 1, "Expected %r task count" % expected_task_count
 
     finally:
         cleanup_staging(connection)
         connection.close()
 
+# pylint: disable=duplicate-code
 @pytest.fixture()
 def file_setup_teardown():
-    ''' Generates and tears down dummy files to test archival'''
-    for src, dest in zip(SOURCE_FILE_PATHS, DUMMY_FILE_PATHS):
-        copyfile(src, dest)
-
+    ''' Generates and tears down dummy files to test job execution'''
+    copy_source_files(SOURCE_FILE_PATHS, DUMMY_FILE_PATHS)
     try:
         yield
     finally:
-        for archive_path in [f for f in os.listdir(config.ARCHIVE_FILE_DIR)
-                             if f.endswith('.tar.gz')]:
-            os.remove(os.path.join(config.ARCHIVE_FILE_DIR, archive_path))
+        clear_archive()
