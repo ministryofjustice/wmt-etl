@@ -49,7 +49,7 @@ def test_import_extract_rollback():
         with pytest.raises(OperationalError, message='Expecting OperationalError') as error:
             config.DB_STG_SCHEMA = 'invalid'
             loader.import_extract(dataframes)
-        assert '''The specified schema name "invalid" either does not exist''' in str(error.value)
+        assert 'invalid' in str(error.value)
     finally:
         config.DB_STG_SCHEMA = 'staging'
         cleanup_staging(connection)
