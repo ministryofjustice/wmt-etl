@@ -1,6 +1,6 @@
 ''' Tests for extract loader'''
 from os.path import dirname, abspath, join
-from sqlalchemy.exc import ProgrammingError
+from sqlalchemy.exc import OperationalError
 import pytest
 import wmt_etl.etl_config as config
 import wmt_etl.extract_loader as loader
@@ -32,7 +32,7 @@ def test_should_import_extract():
 
             results = connection.execute(select)
             for row in results:
-                assert row[0] == 2
+                assert row[0] == 3
     finally:
         cleanup_staging(connection)
         connection.close()
@@ -46,10 +46,10 @@ def test_import_extract_rollback():
     connection = engine.connect()
 
     try:
-        with pytest.raises(ProgrammingError, message='Expecting ProgrammingError') as error:
+        with pytest.raises(OperationalError, message='Expecting OperationalError') as error:
             config.DB_STG_SCHEMA = 'invalid'
             loader.import_extract(dataframes)
-        assert '''schema "invalid" does not exist''' in str(error.value)
+        assert '''The specified schema name "invalid" either does not exist''' in str(error.value)
     finally:
         config.DB_STG_SCHEMA = 'staging'
         cleanup_staging(connection)
