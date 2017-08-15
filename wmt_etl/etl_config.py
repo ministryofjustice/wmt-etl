@@ -12,8 +12,8 @@ DB_SERVER = os.getenv('WMT_DB_SERVER', 'localhost')
 DB_NAME = os.getenv('WMT_DB_NAME', 'wmt_db')
 DB_STG_SCHEMA = os.getenv('WMT_DB_SCHEMA', 'staging')
 DB_APP_SCHEMA = os.getenv('WMT_DB_SCHEMA', 'app')
-DB_USERNAME = os.getenv('WMT_DB_USERNAME', 'wmt_etl')
-DB_PASSWORD = os.getenv('WMT_DB_PASSWORD', 'wmt_etl')
+DB_USERNAME = os.getenv('WMT_ETL_STAGING_DATABASE_USERNAME', 'wmt_etl')
+DB_PASSWORD = os.getenv('WMT_ETL_STAGING_DATABASE_PASSWORD', 'wmt_etl')
 
 # Extract file settings
 IMPORT_FILE_DIR = os.getenv('WMT_IMPORT_FILE_PATH',
