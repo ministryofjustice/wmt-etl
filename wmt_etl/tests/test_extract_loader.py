@@ -58,6 +58,7 @@ def test_import_extract_rollback():
 @pytest.mark.integration
 def test_get_db_engine():
     '''Should create a new database engine instance for connection'''
+    connection = None
     engine = loader.get_db_engine()
     assert engine is not None
     try:
@@ -65,4 +66,5 @@ def test_get_db_engine():
         assert connection is not None
         assert connection.engine == engine
     finally:
-        connection.close()
+        if connection != None:
+            connection.close()
