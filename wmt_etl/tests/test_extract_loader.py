@@ -1,6 +1,6 @@
 ''' Tests for extract loader'''
 from os.path import dirname, abspath, join
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import ProgrammingError
 import pytest
 import wmt_etl.etl_config as config
 import wmt_etl.extract_loader as loader
@@ -46,7 +46,7 @@ def test_import_extract_rollback():
     connection = engine.connect()
 
     try:
-        with pytest.raises(OperationalError, message='Expecting OperationalError') as error:
+        with pytest.raises(ProgrammingError, message='Expecting ProgrammingError') as error:
             config.DB_STG_SCHEMA = 'invalid'
             loader.import_extract(dataframes)
         assert 'invalid' in str(error.value)

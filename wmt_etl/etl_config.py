@@ -7,8 +7,9 @@ import os
 LOGGING_DIR = os.getenv('WMT_LOGGING_DIR', './logs')
 
 # WMT Database - target staging schema
-DB_ENGINE = os.getenv('WMT_DB_ENGINE', 'mssql+pymssql')
+DB_ENGINE = os.getenv('WMT_DB_ENGINE', 'mssql+pyodbc')
 DB_SERVER = os.getenv('WMT_DB_SERVER', 'localhost')
+DB_DRIVER = os.getenv('WMT_DB_DRIVER', 'ODBC+Driver+13+for+SQL+Server')
 DB_NAME = os.getenv('WMT_DB_NAME', 'wmt_db')
 DB_STG_SCHEMA = os.getenv('WMT_DB_SCHEMA', 'staging')
 DB_APP_SCHEMA = os.getenv('WMT_DB_SCHEMA', 'app')
