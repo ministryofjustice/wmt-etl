@@ -10,9 +10,15 @@ To set up Python and VirtualEnv install as follows:
 ```
 brew install python
 pip install virtualenvwrapper
-brew install freetds@0.91
-brew link --force freetds@0.91
 brew install unixodbc
+```
+
+Install the ODBC Driver and SQLCMD utility for Mac:
+
+```
+brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+brew update
+ACCEPT_EULA=y brew install --no-sandbox msodbcsql mssql-tools
 ```
 
 Add the following lines to your `~/.bash_profile`:
