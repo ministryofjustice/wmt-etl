@@ -30,7 +30,7 @@ def test_run_import(file_setup_teardown):
 
         for name in config.VALID_SHEET_NAMES:
             select = 'SELECT COUNT(*) FROM {0}.{1}'.format(config.DB_STG_SCHEMA, name)
-            print(select)
+
             results = connection.execute(select)
             for row in results:
                 assert row[0] == expected_ext_count, "Expected %r row count" % expected_ext_count
