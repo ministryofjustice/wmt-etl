@@ -32,4 +32,5 @@ VALID_SHEET_NAMES = [
     'flag_warr_4_n',
     'flag_upw',
     'flag_o_due',
-    'flag_priority']
+    'flag_priority',
+    'cms']
