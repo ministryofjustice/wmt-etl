@@ -32,7 +32,7 @@ def test_should_import_extract():
 
             results = connection.execute(select)
             for row in results:
-                assert row[0] == 3
+                assert row[0] == 3, "%r" % name
     finally:
         cleanup_staging(connection)
         connection.close()
