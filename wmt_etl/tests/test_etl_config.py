@@ -9,4 +9,4 @@ def test_default_configuration():
     assert config.DB_STG_SCHEMA == "staging"
     assert config.DB_APP_SCHEMA == "app"
     assert config.DB_DRIVER == "ODBC+Driver+13+for+SQL+Server"
-    assert len(config.VALID_SHEET_NAMES) == 8
+    assert len(config.VALID_SHEET_NAMES) == 9
