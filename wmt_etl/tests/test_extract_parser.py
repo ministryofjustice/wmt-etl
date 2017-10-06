@@ -42,7 +42,11 @@ def test_validate_sheet_names():
         'Flag_Priority',
         'Requirements',
         'CMS',
+<<<<<<< HEAD
         'GS']
+=======
+        'ARMS']
+>>>>>>> master
     assert parser.validate_workbook_format(sheet_names)
 
 def test_invalid_sheet_names():
