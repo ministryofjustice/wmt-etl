@@ -40,10 +40,10 @@ def test_validate_sheet_names():
         'Flag_Upw',
         'Flag_O_Due',
         'Flag_Priority',
-        'Requirements',
         'CMS',
         'GS',
-        'ARMS']
+        'ARMS',
+        'T2A']
     assert parser.validate_workbook_format(sheet_names)
 
 def test_invalid_sheet_names():
@@ -54,7 +54,7 @@ def test_invalid_sheet_names():
 def test_load_workbook():
     '''Test that a workbook in XLSX format can be successfully loaded'''
     workbook = parser.load_workbook(TEST_DATA_FILE_PATH)
-    assert len(workbook.sheet_names) == 10
+    assert len(workbook.sheet_names) == 11
     assert workbook.sheet_names[0] == 'WMT_Extract'
     assert workbook.sheet_names[1] == 'Court_Reports'
 
@@ -62,7 +62,7 @@ def test_parse_workbook():
     '''Test that a workbook can be parsed correctly'''
     workbook = parser.load_workbook(TEST_DATA_FILE_PATH)
     dataframes = parser.parse_workbook(workbook)
-    assert len(dataframes) == 10
+    assert len(dataframes) == 11
     assert not dataframes['wmt_extract'].empty
     assert len(dataframes['wmt_extract'].columns) == 41
     assert len(dataframes['wmt_extract'].index) == 2
