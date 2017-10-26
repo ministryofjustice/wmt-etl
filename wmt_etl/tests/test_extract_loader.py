@@ -20,11 +20,12 @@ def cleanup_staging(connection):
 @pytest.mark.integration
 def test_should_import_extract():
     '''Should import valid dataframes to staging schema'''
+    engine = loader.get_db_engine()
+    connection = engine.connect()
+    cleanup_staging(connection)
     workbook = parser.load_workbook(TEST_DATA_FILE_PATH)
     dataframes = parser.parse_workbook(workbook)
     loader.import_extract(dataframes)
-    engine = loader.get_db_engine()
-    connection = engine.connect()
 
     try:
         for name in config.VALID_SHEET_NAMES:

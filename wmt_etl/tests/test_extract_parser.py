@@ -66,10 +66,10 @@ def test_parse_workbook():
     assert not dataframes['wmt_extract'].empty
     assert len(dataframes['wmt_extract'].columns) == 41
     assert len(dataframes['wmt_extract'].index) == 2
-    assert len(dataframes['court_reports'].columns) == 9
+    assert len(dataframes['court_reports'].columns) == 17
     assert len(dataframes['court_reports'].index) == 2
     assert dataframes['wmt_extract'].columns[3] == 'ldu_desc'
-    assert dataframes['court_reports'].columns[7] == 'sdr_conv_last_30'
+    assert dataframes['court_reports'].columns[7] == 'om_surname'
 
 def test_load_workbook_missing_file():
     '''Loading a missing workbook file should raise an error'''
