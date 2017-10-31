@@ -36,4 +36,5 @@ VALID_SHEET_NAMES = [
     'cms',
     'gs',
     'arms',
-    't2a']
+    't2a',
+    'wmt_extract_sa']
