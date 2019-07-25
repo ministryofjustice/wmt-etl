@@ -61,7 +61,7 @@ def test_load_workbook():
     assert workbook.sheet_names[0] == 'WMT_Extract'
     assert workbook.sheet_names[1] == 'WMT_Extract_Filtered'
     assert workbook.sheet_names[2] == 'Court_Reports'
-    assert workbook.sheet_names[12] == 'Suspended_Lifers'
+    assert workbook.sheet_names[13] == 'Suspended_Lifers'
 
 def test_parse_workbook():
     '''Test that a workbook can be parsed correctly'''
