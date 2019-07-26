@@ -67,7 +67,8 @@ def test_parse_workbook():
     '''Test that a workbook can be parsed correctly'''
     workbook = parser.load_workbook(TEST_DATA_FILE_PATH)
     dataframes = parser.parse_workbook(workbook)
-    assert len(dataframes) == 13
+    print len(dataframes)
+    assert len(dataframes) == 14
     assert not dataframes['wmt_extract'].empty
     assert len(dataframes['wmt_extract'].columns) == 41
     assert len(dataframes['wmt_extract'].index) == 2
