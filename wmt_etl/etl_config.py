@@ -27,6 +27,7 @@ EXPECTED_FILE_EXTENSIONS = ('.xlsx', '.xls')
 # Extract valid source worksheet tabs
 VALID_SHEET_NAMES = [
     'wmt_extract',
+    'wmt_extract_filtered',
     'court_reports',
     'inst_reports',
     'flag_warr_4_n',
