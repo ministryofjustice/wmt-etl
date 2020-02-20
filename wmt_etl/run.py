@@ -28,7 +28,7 @@ def run():
         process_file(input_files[-1], complete=True)
 
         files_processed = True
-    except Exception, ex:
+    except Exception as ex:
         logging.error(ex.message, exc_info=True)
     finally:
         if files_processed:

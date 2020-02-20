@@ -11,7 +11,7 @@ def import_extract(dataframes, clean=False, complete=False):
     '''Process all dataframes representing total contents of an extract workbook'''
     db_engine = get_db_engine()
     with db_engine.connect() as connection, connection.begin():
-        for table_name, data in dataframes.iteritems():
+        for table_name, data in dataframes.items():
             if clean:
                 delete = 'DELETE FROM {0}.{1}'.format(config.DB_STG_SCHEMA, table_name)
                 connection.execute(delete)
