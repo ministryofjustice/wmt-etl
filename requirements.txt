@@ -15,7 +15,6 @@ openpyxl==3.0.3
 packaging==20.1
 pandas==1.0.1
 pbr==5.4.4
-psycopg2==2.8.4
 py==1.8.1
 pylint==2.4.4
 pymssql==2.1.4
