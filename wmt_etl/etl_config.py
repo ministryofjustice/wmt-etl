@@ -41,4 +41,6 @@ VALID_SHEET_NAMES = [
     'wmt_extract_sa',
     'suspended_lifers',
     't2a_detail',
-    'omic_teams']
+    'omic',
+    'included_excluded',
+    'omic_wmt_extract']
