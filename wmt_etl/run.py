@@ -19,7 +19,7 @@ def run():
     logging.info("Running load to schema %s", config.DB_STG_SCHEMA)
     input_files = get_input_files()
     try:
-        if len(input_files) < config.EXPECTED_FILE_COUNT:
+        if len(input_files) != config.EXPECTED_FILE_COUNT:
             raise ValueError('Not all expected extract files are present')
 
         process_file(input_files[0], clean_tables=True)
