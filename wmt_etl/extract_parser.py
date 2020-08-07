@@ -1,6 +1,7 @@
 '''Functionality for process WMT extract worksheets'''
 import pandas as pd
 import wmt_etl.etl_config as config
+import logging
 
 def load_workbook(file_path):
     ''' Load workbook at specified path'''
@@ -9,14 +10,24 @@ def load_workbook(file_path):
         raise ValueError('Workbook does not contain the expected worksheets')
     return workbook
 
-def parse_workbook(workbook):
+def parse_workbook(workbook, input_file):
     ''' Parse an individual workbook'''
     dataframes = {}
     for sheet in workbook.sheet_names:
         if clean_name(sheet) in config.VALID_SHEET_NAMES:
             worksheet = workbook.parse(sheet)
             worksheet.columns = transform_names(worksheet.columns)
-            dataframes[clean_name(sheet)] = worksheet
+
+            spreadsheetColumnsAsSet = set(worksheet.columns.tolist())
+            expectedColumnsAsSet = set(config.VALID_COLUMNS[clean_name(sheet)])
+
+            if not spreadsheetColumnsAsSet.issubset(expectedColumnsAsSet):
+                unexpectedColumns = spreadsheetColumnsAsSet.difference(expectedColumnsAsSet)
+                dataframes[clean_name(sheet)] = worksheet.drop(columns=list(unexpectedColumns))
+                message = 'Removed the following unexpected columns: ' + str(list(unexpectedColumns)) + ' from the ' + clean_name(sheet) + ' tab in the ' + input_file + ' file'
+                logging.info(message)
+            else:
+                dataframes[clean_name(sheet)] = worksheet
 
     return dataframes
 
