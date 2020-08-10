@@ -23,7 +23,7 @@ def parse_workbook(workbook, input_file):
 
             if not spreadsheetColumnsAsSet.issubset(expectedColumnsAsSet):
                 unexpectedColumns = spreadsheetColumnsAsSet.difference(expectedColumnsAsSet)
-                dataframes[clean_name(sheet)] = worksheet.drop(columns=list(unexpectedColumns))
+                dataframes[clean_name(sheet)] = worksheet.drop(labels=list(unexpectedColumns), axis=1)
                 message = 'Removed the following unexpected columns: ' + str(list(unexpectedColumns)) + ' from the ' + clean_name(sheet) + ' tab in the ' + input_file + ' file'
                 logging.info(message)
             else:
