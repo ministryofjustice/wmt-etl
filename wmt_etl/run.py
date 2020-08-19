@@ -38,7 +38,7 @@ def run():
 def process_file(input_file, clean_tables=False, complete=False):
     ''' Process a single extract workbook file'''
     workbook = parser.load_workbook(input_file)
-    dataframes = parser.parse_workbook(workbook)
+    dataframes = parser.parse_workbook(workbook, input_file)
     loader.import_extract(dataframes, clean_tables, complete)
 
     logging.info('Successfully processed file %s', input_file)
