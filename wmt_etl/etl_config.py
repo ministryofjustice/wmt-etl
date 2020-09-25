@@ -21,7 +21,7 @@ IMPORT_FILE_DIR = os.getenv('WMT_IMPORT_FILE_PATH',
                             './wmt_etl/tests/data/import')
 ARCHIVE_FILE_DIR = os.getenv('WMT_ARCHIVE_FILE_PATH', './archive/')
 ARCHIVE_FILE_NAME = os.getenv('WMT_ARCHIVE_FILE_NAME', 'delius-extract')
-EXPECTED_FILE_COUNT = 10
+EXPECTED_FILE_COUNT = 11
 EXPECTED_FILE_EXTENSIONS = ('.xlsx', '.xls')
 
 # Extract valid source worksheet tabs
