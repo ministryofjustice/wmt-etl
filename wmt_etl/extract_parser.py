@@ -1,4 +1,5 @@
 '''Functionality for process WMT extract worksheets'''
+from __future__ import absolute_import
 import pandas as pd
 import wmt_etl.etl_config as config
 import logging

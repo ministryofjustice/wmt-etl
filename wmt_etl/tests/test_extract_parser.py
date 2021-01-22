@@ -1,4 +1,6 @@
 ''' Tests for WMT extract file parser'''
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import pytest
 from xlrd import XLRDError
@@ -71,7 +73,7 @@ def test_parse_workbook():
     '''Test that a workbook can be parsed correctly'''
     workbook = parser.load_workbook(TEST_DATA_FILE_PATH)
     dataframes = parser.parse_workbook(workbook)
-    print len(dataframes)
+    print(len(dataframes))
     assert len(dataframes) == 16
     assert not dataframes['wmt_extract'].empty
     assert len(dataframes['wmt_extract'].columns) == 41

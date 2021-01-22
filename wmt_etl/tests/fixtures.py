@@ -1,7 +1,9 @@
 ''' Fixture and helper functions for reuse in tests'''
+from __future__ import absolute_import
 from os import path, remove, listdir
 from shutil import copyfile
 import wmt_etl.etl_config as config
+from six.moves import zip
 
 def clear_archive():
     '''Clear down archive following test execution'''

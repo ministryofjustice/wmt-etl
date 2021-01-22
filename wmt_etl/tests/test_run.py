@@ -1,5 +1,6 @@
 #pylint: disable=W0613,W0621,W0611
 '''Tests for import top level run module'''
+from __future__ import absolute_import
 from os.path import join, dirname, abspath
 import os
 import pytest

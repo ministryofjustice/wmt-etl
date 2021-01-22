@@ -1,4 +1,5 @@
 '''Load logging configuration'''
+from __future__ import absolute_import
 import os
 import logging.config
 import yaml

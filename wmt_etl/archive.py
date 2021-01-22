@@ -1,4 +1,5 @@
 '''Module to compress and archive processed extract files'''
+from __future__ import absolute_import
 import os
 import time
 from shutil import make_archive

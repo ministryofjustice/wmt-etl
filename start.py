@@ -1,6 +1,7 @@
 '''
 Run main ETL application process
 '''
+from __future__ import absolute_import
 import wmt_etl.run as job
 
 def main():

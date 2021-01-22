@@ -1,5 +1,6 @@
 #pylint: disable=W0613,W0621
 '''Tests for extract file archival'''
+from __future__ import absolute_import
 import os
 import pytest
 import wmt_etl.etl_config as config

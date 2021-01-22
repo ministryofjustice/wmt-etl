@@ -1,5 +1,6 @@
 '''Test for WMT configuration'''
 
+from __future__ import absolute_import
 import wmt_etl.etl_config as config
 
 def test_default_configuration():

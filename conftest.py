@@ -1,4 +1,5 @@
 ''' Configuration for pytest'''
+from __future__ import absolute_import
 import pytest
 
 def pytest_addoption(parser):

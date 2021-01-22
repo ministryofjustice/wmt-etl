@@ -2,6 +2,7 @@
 '''
 Run main ETL application process
 '''
+from __future__ import absolute_import
 import logging
 from os import listdir, mkdir
 from os.path import isfile, join, exists
@@ -28,7 +29,7 @@ def run():
         process_file(input_files[-1], complete=True)
 
         files_processed = True
-    except Exception, ex:
+    except Exception as ex:
         logging.error(ex.message, exc_info=True)
     finally:
         if files_processed:
