@@ -22,10 +22,7 @@ def run():
         if len(input_files) != config.EXPECTED_FILE_COUNT:
             raise ValueError('Not all expected extract files are present')
 
-        process_file(input_files[0], clean_tables=True)
-        for workbook_file_name in input_files[1:-1]:
-            process_file(workbook_file_name)
-        process_file(input_files[-1], complete=True)
+        process_file(input_files[0], clean_tables=True, complete=True)
 
         files_processed = True
     except Exception, ex:
