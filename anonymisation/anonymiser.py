@@ -30,8 +30,7 @@ def main():
                 dataframes[clean_name(sheet)] = worksheet
 
             if clean_name(sheet) == 'wmt_extract' or clean_name(sheet) == 'court_reports' or clean_name(sheet) == 'omic_teams':
-                dataframes[clean_name(sheet)]['om_surname']  = dataframes[clean_name(sheet)]['om_key']
-                dataframes[clean_name(sheet)]['om_forename'] = 'Anon'
+                dataframes[clean_name(sheet)]['om_surname'] = dataframes[clean_name(sheet)]['om_key']
             if clean_name(sheet) == 'wmt_extract_filtered' or clean_name(sheet) == 't2a':
                 dataframes[clean_name(sheet)]['om_surname'] = ''
                 dataframes[clean_name(sheet)]['om_forename'] = ''
