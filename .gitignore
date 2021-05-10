@@ -20,3 +20,7 @@ __pycache__/
 data/**
 archive/**
 
+# Anonymiser data files
+anonymisation/input_files
+anonymisation/output_files
+
